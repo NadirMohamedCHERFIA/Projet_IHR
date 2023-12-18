@@ -6,7 +6,7 @@ Projet Interaction Humain/ Robot Mobile
 ![Login for configuration](./screenshots/login.png)
 ![Configuration](./screenshots/configuration.png)
 
-#To install
+# To install
     pip install tkinter
     python -m pip install ttkbootstrap
     pip install bcrypt
