@@ -132,7 +132,10 @@ def getting_started_window_pack():
     backward_button.pack(side='bottom',pady=10)
     left_button.pack(side='left',pady=10,padx=10)
     right_button.pack(side='right',pady=10,padx=10)
-    grab_frame.pack(side='right')
+    grab_frame.pack(side='right',padx=(20,0))
+    head_frame.pack(side='right')
+    head_up_button.pack(pady=20)
+    head_down_button.pack(pady=20)
     grab_button.pack(pady=20)
     unlatch_button.pack(pady=20)
     stop_frame.pack()
@@ -157,6 +160,9 @@ def getting_started_window_unpack():
     grab_frame.pack_forget()
     grab_button.pack_forget()
     unlatch_button.pack_forget()
+    head_frame.forget()
+    head_down_button.pack_forget()
+    head_up_button.pack_forget()
     stop_frame.pack_forget()
     stop_button.pack_forget()
     return_button.pack_forget()
@@ -170,6 +176,8 @@ def handle_activate_click():
         right_button.configure(state='enable')
         grab_button.configure(state='enable')
         unlatch_button.configure(state='enable')
+        head_up_button.configure(state='enable')
+        head_down_button.configure(state='enable')
 
     else:
         activate_checkbox.configure(text='Activer', bootstyle='primary.Toolbutton', width=buttons_width)
@@ -179,6 +187,9 @@ def handle_activate_click():
         right_button.configure(state='disabled')
         grab_button.configure(state='disabled')
         unlatch_button.configure(state='disabled')
+        head_up_button.configure(state='disabled')
+        head_down_button.configure(state='disabled')
+
 
 def handle_forward_click():
     backward_var.set(0)
@@ -204,6 +215,14 @@ def handle_unlatch_click():
     grab_var.set(0)
     pass
 
+def handle_head_up_click():
+    head_down_var.set(0)
+    pass
+
+def handle_head_down_click():
+    head_up_var.set(0)
+    pass
+
 def handle_stop_click():
     grab_var.set(0)
     unlatch_var.set(0)
@@ -212,6 +231,8 @@ def handle_stop_click():
     forward_var.set(0)
     backward_var.set(0)
     activate_var.set(0)
+    head_up_var.set(0)
+    head_down_var.set(0)
     pass
 
 def handle_exit_button():
@@ -364,7 +385,15 @@ udp_indicator_frame = Frame(
     # highlightbackground='green',
     # highlightthickness=3
 )
+    #head frame
+head_frame = Frame(
+    main_frame,
+    width=200,
+    height=50,
+    # highlightbackground='red',
+    # highlightthickness=3
 
+    )
     # Control frames
 directions_frame = Frame(
     main_frame,
@@ -497,6 +526,32 @@ unlatch_button = tb.Checkbutton(
     offvalue=0,
     command=handle_unlatch_click
     )
+
+head_up_var = IntVar()
+head_up_button = tb.Checkbutton(
+    head_frame,
+    text='Head up',
+    width=20,
+    bootstyle='primary primary.Toolbutton',
+    state='disabled',
+    variable=head_up_var,
+    onvalue=1,
+    offvalue=0,
+    command=handle_head_up_click
+)
+head_down_var = IntVar()
+head_down_button = tb.Checkbutton(
+    head_frame,
+    text='Head down',
+    width=20,
+    bootstyle='primary primary.Toolbutton',
+    state='disabled',
+    variable=head_down_var,
+    onvalue=1,
+    offvalue=0,
+    command=handle_head_down_click
+)
+
 
 stop_button = tb.Button(
     stop_frame,
