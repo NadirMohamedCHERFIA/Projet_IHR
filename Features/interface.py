@@ -157,19 +157,24 @@ def getting_started_window_unpack():
     udp_server_canvas.pack_forget()
     udp_server_label.pack_forget()
     main_frame.pack_forget()
+    getting_started_images_frame.pack_forget()
+    body_img_frame.pack_forget()
+    label_body_image.pack_forget()
+    stop_frame.pack_forget()
+    label_head_image.pack_forget()
+    stop_button.pack_forget()
+    head_img_frame.pack_forget()
     directions_frame.pack_forget()
     forward_button.pack_forget()
     backward_button.pack_forget()
     left_button.pack_forget()
     right_button.pack_forget()
     grab_frame.pack_forget()
+    head_frame.pack_forget()
+    head_up_button.pack_forget()
+    head_down_button.pack_forget()
     grab_button.pack_forget()
     unlatch_button.pack_forget()
-    head_frame.forget()
-    head_down_button.pack_forget()
-    head_up_button.pack_forget()
-    stop_frame.pack_forget()
-    stop_button.pack_forget()
     return_button.pack_forget()
 
 def handle_activate_click():
@@ -437,7 +442,7 @@ grab_frame = Frame(
     main_frame,
     width=200,
     height=50,
-    # highlightbackground='red',
+    # highlightbackground='green',
     # highlightthickness=3
     )
     #stop frame
