@@ -1,6 +1,12 @@
 # Projet_IHR
 Projet Interaction Humain/ Robot Mobile
 
+# To install
+    pip install tkinter
+    python -m pip install ttkbootstrap
+    pip install bcrypt
+    
+# Screenshots
 Main window
 ![Main window](./screenshots/main.png)
 Controll window
@@ -10,7 +16,4 @@ Login for configuration
 Configuration
 ![Configuration](./screenshots/configuration.png)
 
-# To install
-    pip install tkinter
-    python -m pip install ttkbootstrap
-    pip install bcrypt
+
