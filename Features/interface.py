@@ -3,7 +3,7 @@ import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 import bcrypt
 import re
-import time
+from PIL import ImageTk, Image
 from configuration import *
 
 
@@ -126,8 +126,15 @@ def getting_started_window_pack():
     udp_indicator_frame.pack(padx=(0, 30),side='left')
     udp_server_canvas.pack()
     udp_server_label.pack()
-    main_frame.pack(pady=(0,20))
-    directions_frame.pack(side='left',padx=(0,50))
+    main_frame.pack(pady=(0,10))
+    getting_started_images_frame.pack()
+    body_img_frame.pack(side='left')
+    label_body_image.pack(padx=50)
+    stop_frame.pack(side='left')
+    label_head_image.pack(padx=50)
+    stop_button.pack()
+    head_img_frame.pack(side='left')
+    directions_frame.pack(side='left',padx=(0,0))
     forward_button.pack(side='top',pady=10)
     backward_button.pack(side='bottom',pady=10)
     left_button.pack(side='left',pady=10,padx=10)
@@ -138,8 +145,6 @@ def getting_started_window_pack():
     head_down_button.pack(pady=20)
     grab_button.pack(pady=20)
     unlatch_button.pack(pady=20)
-    stop_frame.pack()
-    stop_button.pack()
     return_button.pack(pady=20)
 
 def getting_started_window_unpack():
@@ -385,10 +390,35 @@ udp_indicator_frame = Frame(
     # highlightbackground='green',
     # highlightthickness=3
 )
+    #getting started images
+getting_started_images_frame = Frame(
+    main_frame,
+    width=200,
+    height=50,
+    # highlightbackground='red',
+    # highlightthickness=3
+    )
+    #body img frame
+body_img_frame = Frame(
+    getting_started_images_frame,
+    width=200,
+    height=50,
+    # highlightbackground='red',
+    # highlightthickness=3
+    )
+    #head img frame
+head_img_frame = Frame(
+    getting_started_images_frame,
+    width=50,
+    height=50,
+    # highlightbackground='green',
+    # highlightthickness=3
+    )
+
     #head frame
 head_frame = Frame(
     main_frame,
-    width=200,
+    width=50,
     height=50,
     # highlightbackground='red',
     # highlightthickness=3
@@ -412,12 +442,17 @@ grab_frame = Frame(
     )
     #stop frame
 stop_frame = Frame(
-    main,
+    getting_started_images_frame,
+    # main,
     width=500,
     height=50,
     # highlightbackground='red',
     # highlightthickness=3
     )
+    #images object
+img_body = ImageTk.PhotoImage(Image.open("../src/images/body.png"))
+img_head = ImageTk.PhotoImage(Image.open("../src/images/head.png"))
+
     #canvas
 robot_connection_canvas = Canvas(
     robot_indicator_frame,
@@ -434,6 +469,8 @@ udp_server_canvas = Canvas(
     )
 udp_server_indicator = udp_server_canvas.create_oval((0,0,20,20),fill='green')
     #labels
+label_body_image = Label(body_img_frame, image = img_body)
+label_head_image = Label(head_img_frame, image = img_head)
 robot_connection_label = tb.Label(
     robot_indicator_frame,
     text='Robot connection'
@@ -556,7 +593,7 @@ head_down_button = tb.Checkbutton(
 stop_button = tb.Button(
     stop_frame,
     text='Stop',
-    width=buttons_width,
+    width=10,
     bootstyle='danger',
     command=handle_stop_click
     )
