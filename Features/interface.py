@@ -134,7 +134,7 @@ def getting_started_window_pack():
     label_head_image.pack(padx=50)
     stop_button.pack()
     head_img_frame.pack(side='left')
-    directions_frame.pack(side='left',padx=(0,0))
+    directions_frame.pack(side='left',padx=(0,150))
     forward_button.pack(side='top',pady=10)
     backward_button.pack(side='bottom',pady=10)
     left_button.pack(side='left',pady=10,padx=10)
@@ -375,7 +375,7 @@ main_frame = Frame(
     # indicators frames
 indicators_frame = Frame(
     main,
-    width=200,
+    width=400,
     height=50,
     highlightbackground='grey',
     highlightthickness=1
@@ -383,7 +383,7 @@ indicators_frame = Frame(
     #indicator frame
 robot_indicator_frame = Frame(
     indicators_frame,
-    width=200,
+    width=400,
     height=50,
     # highlightbackground='green'
     # highlightthickness=3,
@@ -398,7 +398,7 @@ udp_indicator_frame = Frame(
     #getting started images
 getting_started_images_frame = Frame(
     main_frame,
-    width=200,
+    width=400,
     height=50,
     # highlightbackground='red',
     # highlightthickness=3
@@ -598,7 +598,7 @@ head_down_button = tb.Checkbutton(
 stop_button = tb.Button(
     stop_frame,
     text='Stop',
-    width=10,
+    width=20,
     bootstyle='danger',
     command=handle_stop_click
     )
