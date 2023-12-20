@@ -12,6 +12,7 @@ from configuration import *
 main = Tk()
 style = tb.Style(selected_theme)
 main.title("Interface Robotique")
+main.iconbitmap('../src/images/Robot.png')
 main.geometry(dimensions)
 
 
