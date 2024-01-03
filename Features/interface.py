@@ -1,6 +1,7 @@
 from tkinter import *
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
+# import '../src/ttkbootstrap-1.10.1/src/ttkbootstrap/__init__.py' as tb
 import bcrypt
 import re
 from PIL import ImageTk, Image
