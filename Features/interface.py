@@ -173,6 +173,7 @@ def getting_started_window_unpack():
     right_button.pack_forget()
     grab_frame.pack_forget()
     head_frame.pack_forget()
+    head_closed_img_frame.forget()
     head_up_button.pack_forget()
     head_down_button.pack_forget()
     grab_button.pack_forget()
@@ -221,9 +222,17 @@ def handle_right_click():
 
 def handle_grab_click():
     unlatch_var.set(0)
+    head_closed_img_frame.pack(side='left')
+    head_img_frame.forget()
+    # label_head_image.forget()
+    label_head_image_closed.pack(padx=50)
     pass
 
 def handle_unlatch_click():
+    label_head_image_closed.forget()
+    # label_head_image.pack()
+    head_closed_img_frame.forget()
+    head_img_frame.pack()
     grab_var.set(0)
     pass
 
@@ -421,6 +430,13 @@ head_img_frame = Frame(
     # highlightbackground='green',
     # highlightthickness=3
     )
+head_closed_img_frame = Frame(
+    getting_started_images_frame,
+    width=50,
+    height=50,
+    # highlightbackground='gold',
+    # highlightthickness=3
+    )
 
     #head frame
 head_frame = Frame(
@@ -459,6 +475,7 @@ stop_frame = Frame(
     #images object
 img_body = ImageTk.PhotoImage(Image.open("../src/images/body.png"))
 img_head = ImageTk.PhotoImage(Image.open("../src/images/head.png"))
+img_head_closed = ImageTk.PhotoImage(Image.open('../src/images/head-closed.png'))
 
     #canvas
 robot_connection_canvas = Canvas(
@@ -478,6 +495,7 @@ udp_server_indicator = udp_server_canvas.create_oval((0,0,20,20),fill='green')
     #labels
 label_body_image = Label(body_img_frame, image = img_body)
 label_head_image = Label(head_img_frame, image = img_head)
+label_head_image_closed = Label(head_closed_img_frame,image=img_head_closed)
 robot_connection_label = tb.Label(
     robot_indicator_frame,
     text='Robot connection'
