@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter as tk
 # import ttkbootstrap as tb
 # from ttkbootstrap.constants import *
 import bcrypt
@@ -206,14 +207,14 @@ def getting_started_window_unpack():
     grab_button.pack_forget()
     unlatch_button.pack_forget()
     return_button.pack_forget()
-
+def activate_clicked():
+    activate_var.set(not(activate_var.get()))
+    handle_activate_click()
 def handle_activate_click():
-    if activate_var.get()==1:
+    if activate_var.get()==True:
         activate_checkbox.configure(text='Activé', 
-                                    # bootstyle='success.Toolbutton',
                                     width=buttons_width,
                                     bg=successColor,
-                                    # fg=whiteColor
                                     )
         robot_connection_indicator = robot_connection_canvas.create_oval((0,0,20,20),fill='green')
         forward_button.configure(state="active")
@@ -227,7 +228,6 @@ def handle_activate_click():
 
     else:
         activate_checkbox.configure(text='Activer', 
-                                    # bootstyle='primary.Toolbutton',
                                     bg=alertColor,
                                     width=buttons_width)
         robot_connection_indicator = robot_connection_canvas.create_oval((0,0,20,20),fill='orange')
@@ -239,50 +239,75 @@ def handle_activate_click():
         unlatch_button.configure(state='disabled')
         head_up_button.configure(state='disabled')
         head_down_button.configure(state='disabled')
-
-
+        forward_var.set(False)
+        backward_var.set(False)
+        left_var.set(False)
+        right_var.set(False)
+        grab_var.set(False)
+        unlatch_var.set(False)
+        head_up_var.set(False)
+        head_down_var.set(False)
+        handle_forward_click()
+        handle_backward_click()
+        handle_left_click()
+        handle_right_click()
+        handle_grab_click()
+        handle_unlatch_click()
+        handle_head_up_click()
+        handle_head_down_click()
+def forward_clicked():
+    forward_var.set(not(forward_var.get()))
+    handle_forward_click()
 def handle_forward_click():
-    if(forward_var.get()==1):
+    if(forward_var.get()==True):
         forward_button.configure(bg=primaryColor)
         backward_button.configure(bg=secondaryColor)
     else:
         forward_button.configure(bg=secondaryColor)
-    backward_var.set(0)
+    backward_var.set(False)
     pass
-
+def backward_clicked():
+    backward_var.set(not(backward_var.get()))
+    handle_backward_click()
 def handle_backward_click():
-    if(backward_var.get()==1):
-        forward_var.set(0)
+    if(backward_var.get()==True):
+        forward_var.set(False)
         backward_button.configure(bg=primaryColor)
         forward_button.configure(bg=secondaryColor)
     else:
         backward_button.configure(bg=secondaryColor)
     pass
-
+def left_clicked():
+    left_var.set(not(left_var.get()))
+    handle_left_click()
 def handle_left_click():
-    if(left_var.get()==1):
-        right_var.set(0)
+    if(left_var.get()==True):
+        right_var.set(False)
         left_button.configure(bg=primaryColor)
         right_button.configure(bg=secondaryColor)
     else:
         left_button.configure(bg=secondaryColor)
     pass
-
+def right_clicked():
+    right_var.set(not(right_var.get()))
+    handle_right_click()
 def handle_right_click():
-    if(right_var.get()==1):
-        left_var.set(0)
+    if(right_var.get()==True):
+        left_var.set(False)
         right_button.configure(bg=primaryColor)
         left_button.configure(bg=secondaryColor)
     else:
         right_button.configure(bg=secondaryColor)
     pass
-
+def grab_clicked():
+    grab_var.set(not(grab_var.get()))
+    handle_grab_click()
 def handle_grab_click():
-    if(grab_var.get()==1):
+    if(grab_var.get()==True):
         grab_button.configure(bg=primaryColor)
         unlatch_button.configure(bg=secondaryColor)
-        unlatch_var.set(0)
-        head_closed_img_frame.pack(side='left')
+        unlatch_var.set(False)
+        head_closed_img_frame.pack(side='left',padx=(250,0))
         head_closed_img_frame.configure(bg=bgColor)
         head_img_frame.forget()
         label_head_image_closed.pack(padx=50)
@@ -291,12 +316,14 @@ def handle_grab_click():
         label_head_image_closed.forget()
         head_closed_img_frame.forget()
         head_closed_img_frame.configure(bg=bgColor)
-        head_img_frame.pack()
-        grab_var.set(0)
+        head_img_frame.pack(side='left',padx=(250,0))
+        grab_var.set(False)
 
-
+def unlatch_clicked():
+    unlatch_var.set(not(unlatch_var.get()))
+    handle_unlatch_click()
 def handle_unlatch_click():
-    if(unlatch_var.get()==1):
+    if(unlatch_var.get()==True):
         unlatch_button.configure(bg=primaryColor)
         grab_button.configure(bg=secondaryColor)
     else:
@@ -306,27 +333,41 @@ def handle_unlatch_click():
     head_closed_img_frame.forget()
     head_closed_img_frame.configure(bg=bgColor)
     head_img_frame.pack()
-    grab_var.set(0)
+    grab_var.set(False)
     pass
-
+def head_up_clicked():
+    head_up_var.set(not(head_up_var.get()))
+    handle_head_up_click()
 def handle_head_up_click():
-    head_down_var.set(0)
+    if(head_up_var.get()==True):
+        head_down_var.set(False)
+        head_up_button.configure(bg=primaryColor)
+        head_down_button.configure(bg=secondaryColor)
+    else:
+        head_up_button.configure(bg=secondaryColor)
     pass
-
+def head_down_clicked():
+    head_down_var.set(not(head_down_var.get()))
+    handle_head_down_click()
 def handle_head_down_click():
-    head_up_var.set(0)
+    if(head_down_var.get()==True):
+        head_up_var.set(False)
+        head_down_button.configure(bg=primaryColor)
+        head_up_button.configure(bg=secondaryColor)
+    else:
+        head_down_button.configure(bg=secondaryColor)
     pass
 
 def handle_stop_click():
-    grab_var.set(0)
-    unlatch_var.set(0)
-    left_var.set(0)
-    right_var.set(0)
-    forward_var.set(0)
-    backward_var.set(0)
-    activate_var.set(0)
-    head_up_var.set(0)
-    head_down_var.set(0)
+    grab_var.set(False)
+    unlatch_var.set(False)
+    left_var.set(False)
+    right_var.set(False)
+    forward_var.set(False)
+    backward_var.set(False)
+    activate_var.set(False)
+    head_up_var.set(False)
+    head_down_var.set(False)
     handle_activate_click()
     pass
 
@@ -334,28 +375,12 @@ def handle_exit_button():
     main.destroy()
 
 def handle_return():
+    activate_var.set(False)
+    handle_activate_click()
     login_window_unpack()
     first_window_pack()
     configuration_window_unpack()
     getting_started_window_unpack()
-
-#style
-# style = tb.Style()
-# style.configure('primary.TButton',font=(font_var,18,'bold'))
-# style.configure('success.TButton',font=(font_var,18,'bold'))
-# style.configure('danger.TButton', font=(font_var, 18, 'bold'))
-
-#theme_toggle-chooser
-# theme_var = IntVar()
-# toggle_theme_button = Checkbutton(
-#     main,
-#     text='Dark theme',
-#     # bootstyle='primary,round-toggle',
-#     variable=theme_var,
-#     onvalue=1,
-#     offvalue=0,
-#     command=handle_toggle_theme
-#     )
 #main window
     #header_label
 header_label = Label(
@@ -604,26 +629,22 @@ udp_server_label = Label(
     )
 udp_server_label.configure(bg=bgColor,fg=whiteColor)
     #Buttons
-activate_var = IntVar()
+activate_var = BooleanVar()
 # Create a custom style to hide the checkmark
-# style = ttk.Style()
-# style.layout('NoCheckmark.TCheckbutton', style.layout('TCheckbutton', []))
-# style.configure('NoCheckmark.TCheckbutton',background='SystemButtonFace', foreground='SystemButtonFace')
-activate_checkbox = Checkbutton(
+
+activate_checkbox = Button(
     main,
     text='Activer',
-    # bootstyle='primary.Toolbutton',
     width=buttons_width,
     font=font_configuration_lg,
-    variable=activate_var,
+    # variable=activate_var,
     bg=alertColor,
-    # style='NoCheckmark.TCheckbutton',
-    onvalue=1,
-    offvalue=0,
-    command=handle_activate_click
+    # onvalue=1,
+    # offvalue=0,
+    command=activate_clicked
     )   
-forward_var = IntVar()
-forward_button = Checkbutton(
+forward_var = BooleanVar()
+forward_button = Button(
     directions_frame,
     text='Forward',
     width=20,
@@ -631,13 +652,13 @@ forward_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary.Toolbutton',
     state='disabled',
-    variable=forward_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_forward_click
+    # variable=forward_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=forward_clicked
     )
-backward_var = IntVar()
-backward_button = Checkbutton(
+backward_var = BooleanVar()
+backward_button = Button(
     directions_frame,
     text='Backward',
     width=20,
@@ -645,13 +666,13 @@ backward_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary.Toolbutton',
     state='disabled',
-    variable=backward_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_backward_click
+    # variable=backward_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=backward_clicked
     )
-left_var = IntVar()
-left_button = Checkbutton(
+left_var = BooleanVar()
+left_button = Button(
     directions_frame,
     text='Left',
     width=20,
@@ -659,13 +680,13 @@ left_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary.Toolbutton',
     state='disabled',
-    variable=left_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_left_click
+    # variable=left_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=left_clicked
     )
-right_var = IntVar()
-right_button = Checkbutton(
+right_var = BooleanVar()
+right_button = Button(
     directions_frame,
     text='Right',
     width=20,
@@ -673,13 +694,13 @@ right_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary.Toolbutton',
     state='disabled',
-    variable=right_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_right_click
+    # variable=right_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=right_clicked
     )
-grab_var = IntVar()
-grab_button = Checkbutton(
+grab_var = BooleanVar()
+grab_button = Button(
     grab_frame,
     text='Grab',
     width=20,
@@ -687,13 +708,13 @@ grab_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary.Toolbutton',
     state='disabled',
-    variable=grab_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_grab_click
+    # variable=grab_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=grab_clicked
     )
-unlatch_var = IntVar()
-unlatch_button =Checkbutton(
+unlatch_var = BooleanVar()
+unlatch_button =Button(
     grab_frame,
     text='Ungrab',
     width=20,
@@ -701,14 +722,14 @@ unlatch_button =Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    variable=unlatch_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_unlatch_click
+    # variable=unlatch_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=unlatch_clicked
     )
 
-head_up_var = IntVar()
-head_up_button = Checkbutton(
+head_up_var = BooleanVar()
+head_up_button = Button(
     head_frame,
     text='Head up',
     width=20,
@@ -716,13 +737,13 @@ head_up_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    variable=head_up_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_head_up_click
+    # variable=head_up_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=head_up_clicked
 )
-head_down_var = IntVar()
-head_down_button = Checkbutton(
+head_down_var = BooleanVar()
+head_down_button = Button(
     head_frame,
     text='Head down',
     width=20,
@@ -730,10 +751,10 @@ head_down_button = Checkbutton(
     bg=secondaryColor,
     # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    variable=head_down_var,
-    onvalue=1,
-    offvalue=0,
-    command=handle_head_down_click
+    # variable=head_down_var,
+    # onvalue=1,
+    # offvalue=0,
+    command=head_down_clicked
 )
 
 
