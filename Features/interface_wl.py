@@ -1,9 +1,4 @@
 from tkinter import *
-from tkinter import ttk
-import tkinter as tk
-# import ttkbootstrap as tb
-# from ttkbootstrap.constants import *
-import bcrypt
 import re
 from PIL import ImageTk, Image
 from configuration import *
@@ -111,7 +106,7 @@ def login_window_unpack():
     username_label.pack_forget()
 
 def handle_login(username: str, password: str):
-    if bcrypt.checkpw(password.encode('utf-8'), HASHED_PASSWORD) and username == 'admin':
+    if password=='admin' and username == 'admin':
         print("match")
         password_entry.delete(0, 'end')
         login_window_unpack()
@@ -132,7 +127,9 @@ def first_window_pack():
     header_label.configure(text='Welcome to our robotique control interface!',bg=bgColor,fg=whiteColor)
     # toggle_theme_button.pack(pady=(40, 20))
     header_label.pack(pady=(10, 10))
-    getting_started_button.pack(pady=(100,20))
+    welcome_window_img_frame.pack()
+    label_body_welcome_image.pack()
+    getting_started_button.pack(pady=(20,20))
     configuration_udp_button.pack(pady=20)
     logs_button.pack(pady=20)
     exit_button.pack(pady=20)
@@ -140,6 +137,7 @@ def first_window_pack():
 
 def first_window_unpack():
     # packing
+    welcome_window_img_frame.forget()
     getting_started_button.pack_forget()
     configuration_udp_button.pack_forget()
     exit_button.pack_forget()
@@ -389,6 +387,15 @@ header_label = Label(
     font=(font_var, 18, 'bold')
     )
 
+welcome_window_img_frame = Frame(
+        # main,
+        width=300,
+        height=200,
+        )
+welcome_window_img_frame.configure(bg=bgColor)
+img_welcome = ImageTk.PhotoImage(Image.open("../src/images/logo_red.png"))
+label_body_welcome_image = Label(welcome_window_img_frame, image=img_welcome)
+label_body_welcome_image.configure(bg=bgColor)
     #buttons
 getting_started_button = Button(
     main,
@@ -636,6 +643,7 @@ forward_button = Button(
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
+    command=forward_clicked
     )
 backward_var = BooleanVar()
 backward_button = Button(
