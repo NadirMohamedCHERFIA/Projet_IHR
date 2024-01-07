@@ -393,8 +393,6 @@ header_label = Label(
 getting_started_button = Button(
     main,
     text='Getting started',
-    # bootstyle='primary',
-    # style='primary.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command=getting_started_window_pack
@@ -403,8 +401,6 @@ getting_started_button = Button(
 configuration_udp_button = Button(
     main, 
     text='Configuration UDP',
-    # bootstyle='PRIMARY',
-    # style='primary.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command=login_window_pack
@@ -413,8 +409,6 @@ configuration_udp_button = Button(
 logs_button = Button(
     main, 
     text='Logs',
-    # bootstyle='PRIMARY',
-    # style='primary.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command=logs_window_pack
@@ -423,8 +417,6 @@ logs_button = Button(
 exit_button = Button(
     main,
     text='Exit',
-    # bootstyle='DANGER',
-    # style='danger.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_exit_button
@@ -469,8 +461,6 @@ password_label = Label(text='Password'                       ,bg=bgColor,
 login_button = Button(
     main,
     text='Login',
-    # bootstyle='primary',
-    # style='primary.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command= lambda: handle_login(username_entry.get(),password_entry.get())
@@ -630,17 +620,12 @@ udp_server_label = Label(
 udp_server_label.configure(bg=bgColor,fg=whiteColor)
     #Buttons
 activate_var = BooleanVar()
-# Create a custom style to hide the checkmark
-
 activate_checkbox = Button(
     main,
     text='Activer',
     width=buttons_width,
     font=font_configuration_lg,
-    # variable=activate_var,
     bg=alertColor,
-    # onvalue=1,
-    # offvalue=0,
     command=activate_clicked
     )   
 forward_var = BooleanVar()
@@ -650,12 +635,7 @@ forward_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary.Toolbutton',
     state='disabled',
-    # variable=forward_var,
-    # onvalue=1,
-    # offvalue=0,
-    command=forward_clicked
     )
 backward_var = BooleanVar()
 backward_button = Button(
@@ -664,11 +644,7 @@ backward_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary.Toolbutton',
     state='disabled',
-    # variable=backward_var,
-    # onvalue=1,
-    # offvalue=0,
     command=backward_clicked
     )
 left_var = BooleanVar()
@@ -678,11 +654,7 @@ left_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary.Toolbutton',
     state='disabled',
-    # variable=left_var,
-    # onvalue=1,
-    # offvalue=0,
     command=left_clicked
     )
 right_var = BooleanVar()
@@ -692,11 +664,7 @@ right_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary.Toolbutton',
     state='disabled',
-    # variable=right_var,
-    # onvalue=1,
-    # offvalue=0,
     command=right_clicked
     )
 grab_var = BooleanVar()
@@ -706,11 +674,7 @@ grab_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary.Toolbutton',
     state='disabled',
-    # variable=grab_var,
-    # onvalue=1,
-    # offvalue=0,
     command=grab_clicked
     )
 unlatch_var = BooleanVar()
@@ -720,11 +684,7 @@ unlatch_button =Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    # variable=unlatch_var,
-    # onvalue=1,
-    # offvalue=0,
     command=unlatch_clicked
     )
 
@@ -735,11 +695,7 @@ head_up_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    # variable=head_up_var,
-    # onvalue=1,
-    # offvalue=0,
     command=head_up_clicked
 )
 head_down_var = BooleanVar()
@@ -749,11 +705,7 @@ head_down_button = Button(
     width=20,
     font=font_configuration_md,
     bg=secondaryColor,
-    # bootstyle='primary primary.Toolbutton',
     state='disabled',
-    # variable=head_down_var,
-    # onvalue=1,
-    # offvalue=0,
     command=head_down_clicked
 )
 
@@ -764,7 +716,6 @@ stop_button = Button(
     text='Stop',
     width=20,
     font=font_configuration_lg,
-    # bootstyle='danger',
     command=handle_stop_click
     )
 stop_button.configure(bg='#FF0000',fg=whiteColor)
@@ -810,8 +761,6 @@ port_label = Label(
 submit_button = Button(
     main,
     text='Enregistrer',
-    # bootstyle='primary',
-    # style='primary.TButton',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_configuration_save
