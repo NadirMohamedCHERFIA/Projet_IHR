@@ -5,7 +5,7 @@ HASHED_PASSWORD = b'$2b$12$vqtcGu1yQFxmt2RmqyrVpuVA5M12mA/H9zTtCUBoilDSWAst6st1y
 IP = "192.168.1.54"
 PORT = "161"
 
-dimensions = "1000x550"
+dimensions = "1200x600"
 
 font_var = 'Poppins'
 
