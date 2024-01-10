@@ -211,7 +211,7 @@ def logs_window_pack():
 def first_window_pack():
     # packing
     header_label.configure(
-        text='Welcome to our robotic control interface!', bg=bgColor, fg=whiteColor)
+        text=' Bienvenue dans notre interface robotique!', bg=bgColor, fg=whiteColor)
     # toggle_theme_button.pack(pady=(40, 20))
     header_label.pack(pady=(10, 10))
     welcome_window_img_frame.pack()
@@ -234,7 +234,7 @@ def first_window_unpack():
 
 def getting_started_window_pack():
     first_window_unpack()
-    header_label.configure(text='Getting started!', bg=bgColor, fg=whiteColor)
+    header_label.configure(text='Commencer!', bg=bgColor, fg=whiteColor)
     activate_checkbox.pack(pady=(10, 20))
     stop_button.pack(pady=(0, 20))
     indicators_frame.pack()
@@ -563,7 +563,7 @@ label_body_welcome_image.configure(bg=bgColor)
 # buttons
 getting_started_button = Button(
     main,
-    text='Getting started',
+    text='Commencer',
     width=buttons_width,
     font=font_configuration_lg,
     command=getting_started_window_pack
@@ -587,7 +587,7 @@ logs_button = Button(
 
 exit_button = Button(
     main,
-    text='Exit',
+    text='Quitter',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_exit_button
@@ -595,7 +595,7 @@ exit_button = Button(
 exit_button.configure(bg=dangerColor, fg=whiteColor)
 return_button = Button(
     main,
-    text='Return',
+    text='Retour',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_return,
