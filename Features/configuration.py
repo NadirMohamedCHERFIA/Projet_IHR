@@ -5,7 +5,7 @@ HASHED_PASSWORD = b'$2b$12$vqtcGu1yQFxmt2RmqyrVpuVA5M12mA/H9zTtCUBoilDSWAst6st1y
 IP = "192.168.1.54"
 PORT = "161"
 
-dimensions = "1200x650"
+dimensions = "1200x750"
 
 UDP_IP = "10.3.141.80"
 UDP_PORT = 1025

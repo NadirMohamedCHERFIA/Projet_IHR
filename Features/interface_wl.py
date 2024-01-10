@@ -37,64 +37,64 @@ checkCalled = False
 
 def checkConnection():
     if (sendToUdp('c') == '200'):
-        # here canvas draw green on udp status
+        # here canvas draw green on robot status
         udp_connection_indicator = robot_connection_canvas.create_oval(
             (0, 0, 20, 20), fill='green')
+        return True
     if (sendToUdp('d') == '404'):
-        # here canvas draw orange on udp canvas
+        # here canvas draw orange on robot canvas
         udp_connection_indicator = robot_connection_canvas.create_oval(
             (0, 0, 20, 20), fill='orange')
+        return False
 
 
 def checkButtonsStatus():
-    speed = (speed_var.get())
-    print(speed)
-    if (speed >= 100 and speed < 200):
-        sendToUdp('v')
-    if (speed >= 200 and speed < 280):
-        sendToUdp('p')
+    if(checkConnection):
+        speed = (speed_var.get())
+        if (speed >= 100 and speed < 200):
+            sendToUdp('v') #level one speed
+        if (speed >= 200 and speed < 280):
+            sendToUdp('p') #level two speed
 
-    if (speed >= 280 and speed <= 300):
-        sendToUdp('k')
+        if (speed >= 280 and speed <= 300):
+            sendToUdp('k') #level three speed
 
-    # stop linear
-    if (forward_var.get() == False and backward_var.get() == False and left_var.get() == False and right_var.get() == False):
-        sendToUdp('S')
-        sendToUdp('A')
-        sendToUdp('H')
-    # Head stop
-    if (head_up_var.get() == False and head_down_var.get() == False):
-        sendToUdp('H')
-    # stop gripper
-    if (grab_var.get() == False and unlatch_var.get() == False):
-        sendToUdp('S')
-    # head up
-    if (head_up_var.get() == True):
-        sendToUdp('u')
-    # head down
-    if (head_down_var.get() == True):
-        sendToUdp('D')
-    # grab
-    if (grab_var.get() == True):
-        print("ss")
-        sendToUdp('G')
-    # ungrab
-    if (unlatch_var.get() == True):
-        sendToUdp('U')
-    # Forward
-    if (forward_var.get() == True):
-        sendToUdp('F')
-    # backward
-    if (backward_var.get() == True):
-        sendToUdp('B')
-    # left
-    if (left_var.get() == True and right_var.get() == False):
-        sendToUdp('L')
-    # right
-    if (right_var.get() == True and left_var.get() == False):
-        sendToUdp('R')
-    checkConnection()
-
+        # stop linear
+        if (forward_var.get() == False and backward_var.get() == False and left_var.get() == False and right_var.get() == False):
+            sendToUdp('S')
+            sendToUdp('A')
+            sendToUdp('H')
+        # Head stop
+        if (head_up_var.get() == False and head_down_var.get() == False):
+            sendToUdp('H')
+        # stop gripper
+        if (grab_var.get() == False and unlatch_var.get() == False):
+            sendToUdp('S')
+        # head up
+        if (head_up_var.get() == True):
+            sendToUdp('u')
+        # head down
+        if (head_down_var.get() == True):
+            sendToUdp('D')
+        # grab
+        if (grab_var.get() == True):
+            print("ss")
+            sendToUdp('G')
+        # ungrab
+        if (unlatch_var.get() == True):
+            sendToUdp('U')
+        # Forward
+        if (forward_var.get() == True):
+            sendToUdp('F')
+        # backward
+        if (backward_var.get() == True):
+            sendToUdp('B')
+        # left
+        if (left_var.get() == True and right_var.get() == False):
+            sendToUdp('L')
+        # right
+        if (right_var.get() == True and left_var.get() == False):
+            sendToUdp('R')
 
 def sendToUdp(msg):
     # format the message to send
@@ -211,7 +211,7 @@ def logs_window_pack():
 def first_window_pack():
     # packing
     header_label.configure(
-        text='Welcome to our robotique control interface!', bg=bgColor, fg=whiteColor)
+        text='Welcome to our robotic control interface!', bg=bgColor, fg=whiteColor)
     # toggle_theme_button.pack(pady=(40, 20))
     header_label.pack(pady=(10, 10))
     welcome_window_img_frame.pack()
@@ -309,6 +309,7 @@ def activate_clicked():
 
 
 def handle_activate_click():
+    print(activate_var.get())
     if activate_var.get() == True:
         activate_checkbox.configure(text='Activé',
                                     width=buttons_width,
@@ -355,57 +356,43 @@ def handle_activate_click():
         handle_unlatch_click
         handle_head_up_click
         handle_head_down_click
-# def forward_clicked():
-
-    # # forward_var.set(not(forward_var.get()))
-    # handle_forward_click()
 
 
 def handle_forward_click(e):
-    # if(forward_var.get()==True):
-    forward_var.set(True)
-    forward_button.configure(bg=primaryColor)
-    print(forward_var.get())
-    backward_button.configure(bg=secondaryColor)
-    # else:
-    #     forward_button.configure(bg=secondaryColor)
-    backward_var.set(False)
-    backward_button.configure(bg=secondaryColor)
-    left_var.set(False)
-    left_button.configure(bg=secondaryColor)
-    right_var.set(False)
-    right_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
+    if(activate_var.get()==True):
+        forward_var.set(True)
+        forward_button.configure(bg=primaryColor)
+        print(forward_var.get())
+        backward_button.configure(bg=secondaryColor)
+        backward_var.set(False)
+        backward_button.configure(bg=secondaryColor)
+        left_var.set(False)
+        left_button.configure(bg=secondaryColor)
+        right_var.set(False)
+        right_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
     # pass
 
 
 def handle_forward_on_release(event):
     forward_var.set(False)
     forward_button.configure(bg=secondaryColor)
-    print(forward_var.get())
     checkButtonsStatus()
-# def backward_clicked():
-
-#     backward_var.set(not(backward_var.get()))
-#     handle_backward_click()
-
 
 def handle_backward_click(event):
-    # if(backward_var.get()==True):
-    backward_var.set(True)
-    forward_var.set(False)
-    backward_button.configure(bg=primaryColor)
-    forward_button.configure(bg=secondaryColor)
-    # else:
-    #     backward_button.configure(bg=secondaryColor)
-    forward_var.set(False)
-    forward_button.configure(bg=secondaryColor)
-    left_var.set(False)
-    left_button.configure(bg=secondaryColor)
-    right_var.set(False)
-    right_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        backward_var.set(True)
+        forward_var.set(False)
+        backward_button.configure(bg=primaryColor)
+        forward_button.configure(bg=secondaryColor)
+        forward_var.set(False)
+        forward_button.configure(bg=secondaryColor)
+        left_var.set(False)
+        left_button.configure(bg=secondaryColor)
+        right_var.set(False)
+        right_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
+        pass
 
 
 def handle_backward_on_release(event):
@@ -413,78 +400,60 @@ def handle_backward_on_release(event):
     backward_button.configure(bg=secondaryColor)
     checkButtonsStatus()
 
-# def left_clicked():
-    # left_var.set(not(left_var.get()))
-    # handle_left_click()
-
-
 def handle_left_click(event):
-    # if(left_var.get()==True):
-    left_var.set(True)
-    right_var.set(False)
-    left_button.configure(bg=primaryColor)
-    right_button.configure(bg=secondaryColor)
-    # else:
-    #     left_button.configure(bg=secondaryColor)
-    forward_var.set(False)
-    forward_button.configure(bg=secondaryColor)
-    backward_var.set(False)
-    backward_button.configure(bg=secondaryColor)
-    right_var.set(False)
-    right_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        left_var.set(True)
+        right_var.set(False)
+        left_button.configure(bg=primaryColor)
+        right_button.configure(bg=secondaryColor)
+        forward_var.set(False)
+        forward_button.configure(bg=secondaryColor)
+        backward_var.set(False)
+        backward_button.configure(bg=secondaryColor)
+        right_var.set(False)
+        right_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
+        pass
 
 
 def handle_left_on_release(event):
     left_var.set(False)
     left_button.configure(bg=secondaryColor)
     checkButtonsStatus()
-# def right_clicked():
-
-#     right_var.set(not(right_var.get()))
-#     handle_right_click()
-
 
 def handle_right_click(event):
-    # if(right_var.get()==True):
-    right_var.set(True)
-    left_var.set(False)
-    right_button.configure(bg=primaryColor)
-    left_button.configure(bg=secondaryColor)
-    # else:
-    #     right_button.configure(bg=secondaryColor)
-    forward_var.set(False)
-    forward_button.configure(bg=secondaryColor)
-    backward_var.set(False)
-    backward_button.configure(bg=secondaryColor)
-    left_var.set(False)
-    left_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        right_var.set(True)
+        left_var.set(False)
+        right_button.configure(bg=primaryColor)
+        left_button.configure(bg=secondaryColor)
+        forward_var.set(False)
+        forward_button.configure(bg=secondaryColor)
+        backward_var.set(False)
+        backward_button.configure(bg=secondaryColor)
+        left_var.set(False)
+        left_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
+        pass
 
 
 def handle_right_on_release(event):
     right_var.set(False)
     right_button.configure(bg=secondaryColor)
     checkButtonsStatus()
-# def grab_clicked():
-#     grab_var.set(not(grab_var.get()))
-#     handle_grab_click()
 
 
 def handle_grab_click(event):
-    grab_var.set(True)
-    # if(grab_var.get()==True):
-    grab_button.configure(bg=primaryColor)
-    unlatch_button.configure(bg=secondaryColor)
-    unlatch_var.set(False)
-    head_closed_img_frame.pack(side='left', padx=(250, 0))
-    head_closed_img_frame.configure(bg=bgColor)
-    head_img_frame.forget()
-    label_head_image_closed.pack(padx=50)
-    # else:
-    checkButtonsStatus()
+    if(activate_var.get()==True):
+        grab_var.set(True)
+        grab_button.configure(bg=primaryColor)
+        unlatch_button.configure(bg=secondaryColor)
+        unlatch_var.set(False)
+        head_closed_img_frame.pack(side='left', padx=(250, 0))
+        head_closed_img_frame.configure(bg=bgColor)
+        head_img_frame.forget()
+        label_head_image_closed.pack(padx=50)
+        checkButtonsStatus()
 
 
 def handle_grab_on_release(event):
@@ -495,69 +464,49 @@ def handle_grab_on_release(event):
     head_img_frame.pack(side='left', padx=(250, 0))
     grab_var.set(False)
     checkButtonsStatus()
-# def unlatch_clicked():
-
-#     unlatch_var.set(not(unlatch_var.get()))
-#     handle_unlatch_click()
-
 
 def handle_unlatch_click(event):
-    # if(unlatch_var.get()==True):
-    unlatch_var.set(True)
-    unlatch_button.configure(bg=primaryColor)
-    grab_button.configure(bg=secondaryColor)
-    # else:
-    #     unlatch_button.configure(bg=secondaryColor)
-
-    label_head_image_closed.forget()
-    head_closed_img_frame.forget()
-    head_closed_img_frame.configure(bg=bgColor)
-    head_img_frame.pack()
-    grab_var.set(False)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        unlatch_var.set(True)
+        unlatch_button.configure(bg=primaryColor)
+        grab_button.configure(bg=secondaryColor)
+        label_head_image_closed.forget()
+        head_closed_img_frame.forget()
+        head_closed_img_frame.configure(bg=bgColor)
+        head_img_frame.pack()
+        grab_var.set(False)
+        checkButtonsStatus()
+        pass
 
 
 def handle_unlatch_on_release(event):
     unlatch_button.configure(bg=secondaryColor)
     unlatch_var.set(False)
     checkButtonsStatus()
-# def head_up_clicked():
-#     head_up_var.set(not(head_up_var.get()))
-#     handle_head_up_click()
-
 
 def handle_head_up_click(event):
-    head_up_var.set(True)
-    # if(head_up_var.get()==True):
-    head_down_var.set(False)
-    head_up_button.configure(bg=primaryColor)
-    head_down_button.configure(bg=secondaryColor)
-    # else:
-    #     head_up_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        head_up_var.set(True)
+        head_down_var.set(False)
+        head_up_button.configure(bg=primaryColor)
+        head_down_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
+        pass
 
 
 def handle_head_up_on_release(event):
     head_up_button.configure(bg=secondaryColor)
     head_up_var.set(False)
     checkButtonsStatus()
-# def head_down_clicked():
-#     head_down_var.set(not(head_down_var.get()))
-#     handle_head_down_click()
-
 
 def handle_head_down_click(event):
-    head_down_var.set(True)
-    # if(head_down_var.get()==True):
-    head_up_var.set(False)
-    head_down_button.configure(bg=primaryColor)
-    head_up_button.configure(bg=secondaryColor)
-    # else:
-    #     head_down_button.configure(bg=secondaryColor)
-    checkButtonsStatus()
-    pass
+    if(activate_var.get()==True):
+        head_down_var.set(True)
+        head_up_var.set(False)
+        head_down_button.configure(bg=primaryColor)
+        head_up_button.configure(bg=secondaryColor)
+        checkButtonsStatus()
+        pass
 
 
 def handle_head_down_on_release(event):
@@ -858,7 +807,7 @@ forward_button = Button(
     directions_frame,
     text='Forward',
     width=20,
-    height=3,
+    height=2,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -873,6 +822,7 @@ backward_button = Button(
     directions_frame,
     text='Backward',
     width=20,
+    height=2,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -886,6 +836,7 @@ left_button = Button(
     directions_frame,
     text='Left',
     width=20,
+    height=2,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -899,6 +850,7 @@ right_button = Button(
     directions_frame,
     text='Right',
     width=20,
+    height=2,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -912,6 +864,7 @@ grab_button = Button(
     grab_frame,
     text='Grab',
     width=20,
+    height=3,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -926,6 +879,7 @@ unlatch_button = Button(
     grab_frame,
     text='Ungrab',
     width=20,
+    height=3,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -938,6 +892,7 @@ head_up_button = Button(
     head_frame,
     text='Head up',
     width=20,
+    height=3,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
@@ -952,6 +907,7 @@ head_down_button = Button(
     head_frame,
     text='Head down',
     width=20,
+    height=3,
     font=font_configuration_md,
     bg=secondaryColor,
     state='disabled',
