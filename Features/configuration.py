@@ -7,6 +7,9 @@ PORT = "161"
 
 dimensions = "1200x650"
 
+UDP_IP = "10.3.141.80"
+UDP_PORT = 1025
+
 font_var = 'Poppins'
 
 buttons_width = 40
