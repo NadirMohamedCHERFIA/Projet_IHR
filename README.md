@@ -7,6 +7,8 @@ Projet Interaction Humain/ Robot Mobile
     pip install bcrypt
 ## To install for the interface_wl.py version
     pip install tkinter
+# Arduino library requirement
+    MeOrion.h library (https://github.com/Makeblock-official/Makeblock-Libraries.git)
 # Screenshots
 Main window
 ![Main window](./screenshots/main.png)
