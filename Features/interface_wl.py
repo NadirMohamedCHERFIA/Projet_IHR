@@ -95,6 +95,8 @@ def checkButtonsStatus():
         # right
         if (right_var.get() == True and left_var.get() == False):
             sendToUdp('R')
+    else:
+        activate_var.set(False)
 
 def sendToUdp(msg):
     # format the message to send
