@@ -101,7 +101,7 @@ def checkButtonsStatus():
         if (right_var.get() == True and left_var.get() == False):
             sendToUdp('R')
     else:
-        print("Connection not possible")
+        print("Connection to udp not possible")
         activate_var.set(False)
         handle_activate_click
 
@@ -220,7 +220,7 @@ def logs_window_pack():
 def first_window_pack():
     # packing
     header_label.configure(
-        text=' Bienvenue dans notre interface robotique!', bg=bgColor, fg=whiteColor)
+        text='welcome to our robotic interface', bg=bgColor, fg=whiteColor)
     # toggle_theme_button.pack(pady=(40, 20))
     header_label.pack(pady=(10, 10))
     welcome_window_img_frame.pack()
@@ -243,7 +243,7 @@ def first_window_unpack():
 
 def getting_started_window_pack():
     first_window_unpack()
-    header_label.configure(text='Commencer!', bg=bgColor, fg=whiteColor)
+    header_label.configure(text='Control Panel', bg=bgColor, fg=whiteColor)
     activate_checkbox.pack(pady=(10, 20))
     stop_button.pack(pady=(0, 20))
     indicators_frame.pack()
@@ -572,7 +572,7 @@ label_body_welcome_image.configure(bg=bgColor)
 # buttons
 getting_started_button = Button(
     main,
-    text='Commencer',
+    text='Getting started',
     width=buttons_width,
     font=font_configuration_lg,
     command=getting_started_window_pack
@@ -580,7 +580,7 @@ getting_started_button = Button(
 
 configuration_udp_button = Button(
     main,
-    text='Configuration UDP',
+    text='UDP configuration',
     width=buttons_width,
     font=font_configuration_lg,
     command=login_window_pack
@@ -596,7 +596,7 @@ logs_button = Button(
 
 exit_button = Button(
     main,
-    text='Quitter',
+    text='Exit',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_exit_button
@@ -604,7 +604,7 @@ exit_button = Button(
 exit_button.configure(bg=dangerColor, fg=whiteColor)
 return_button = Button(
     main,
-    text='Retour',
+    text='Return',
     width=buttons_width,
     font=font_configuration_lg,
     command=handle_return,
