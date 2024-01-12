@@ -41,15 +41,20 @@ def checkConnection():
         udp_connection_indicator = robot_connection_canvas.create_oval(
             (0, 0, 20, 20), fill='green')
         return True
-    if (sendToUdp('d') == '404'):
-        # here canvas draw orange on robot canvas
+    else:
         udp_connection_indicator = robot_connection_canvas.create_oval(
             (0, 0, 20, 20), fill='orange')
         return False
 
+    # if (sendToUdp('d') == '404'):
+    #     # here canvas draw orange on robot canvas
+    #     udp_connection_indicator = robot_connection_canvas.create_oval(
+    #         (0, 0, 20, 20), fill='orange')
+    #     return False
+
 
 def checkButtonsStatus():
-    if(checkConnection):
+    if(checkConnection==True):
         speed = (speed_var.get())
         if (speed >= 100 and speed < 200):
             sendToUdp('v') #level one speed
@@ -96,7 +101,9 @@ def checkButtonsStatus():
         if (right_var.get() == True and left_var.get() == False):
             sendToUdp('R')
     else:
+        print("Connection not possible")
         activate_var.set(False)
+        handle_activate_click
 
 def sendToUdp(msg):
     # format the message to send
@@ -317,8 +324,8 @@ def handle_activate_click():
                                     width=buttons_width,
                                     bg=successColor,
                                     )
-        robot_connection_indicator = robot_connection_canvas.create_oval(
-            (0, 0, 20, 20), fill='green')
+        # robot_connection_indicator = robot_connection_canvas.create_oval(
+        #     (0, 0, 20, 20), fill='green')
         forward_button.configure(state="active")
         backward_button.configure(state='active')
         left_button.configure(state='active')
@@ -332,8 +339,8 @@ def handle_activate_click():
         activate_checkbox.configure(text='Activer',
                                     bg=alertColor,
                                     width=buttons_width)
-        robot_connection_indicator = robot_connection_canvas.create_oval(
-            (0, 0, 20, 20), fill='orange')
+        # robot_connection_indicator = robot_connection_canvas.create_oval(
+        #     (0, 0, 20, 20), fill='orange')
         forward_button.configure(state='disabled')
         backward_button.configure(state='disabled')
         left_button.configure(state='disabled')
