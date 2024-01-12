@@ -9,7 +9,6 @@ import socket
 msgFromClient = ""
 msgToClient = ""
 # server info
-serverAddressPort = (UDP_IP, UDP_PORT)
 
 bufferSize = 1024
 # colors
@@ -21,6 +20,7 @@ secondaryColor = '#E0E2DB'
 alertColor = '#E6AF2E'
 primaryColor = '#2176FF'
 
+serverAddressPort = (IP, PORT)
 
 # font
 font_configuration_lg = (font_var, 18, 'bold')
@@ -45,12 +45,6 @@ def checkConnection():
         udp_connection_indicator = robot_connection_canvas.create_oval(
             (0, 0, 20, 20), fill='orange')
         return False
-
-    # if (sendToUdp('d') == '404'):
-    #     # here canvas draw orange on robot canvas
-    #     udp_connection_indicator = robot_connection_canvas.create_oval(
-    #         (0, 0, 20, 20), fill='orange')
-    #     return False
 
 
 def checkButtonsStatus():
@@ -134,6 +128,7 @@ def handle_configuration_save():
     if valid_ip:
         IP = ip_entry.get()
         PORT = port_entry.get()
+        serverAddressPort = (IP, PORT)
         submit_button.configure(
             text='Enregistrement terminé!',
             # bootstyle='success',
