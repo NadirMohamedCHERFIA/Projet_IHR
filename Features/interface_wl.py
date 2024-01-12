@@ -609,13 +609,13 @@ password_entry = Entry(
 
 # labels
 username_label = Label(text='Username', bg=bgColor,
-                       fg=whiteColor,
-                       font=font_configuration_lg
-                       )
+                        fg=whiteColor,
+                        font=font_configuration_lg
+                        )
 password_label = Label(text='Password', bg=bgColor,
-                       fg=whiteColor,
-                       font=font_configuration_lg
-                       )
+                        fg=whiteColor,
+                        font=font_configuration_lg
+                        )
 
 # buttons
 login_button = Button(
@@ -920,7 +920,7 @@ stop_button.configure(bg='#FF0000', fg=whiteColor)
 # Entries
 ip_var = StringVar()
 ip_var.trace_add("write", lambda name, index, mode,
-                 ip_var=ip_var: handle_ip_text_change(ip_var))
+                ip_var=ip_var: handle_ip_text_change(ip_var))
 
 ip_entry = Entry(
     main,
@@ -995,7 +995,6 @@ speed_scale = Scale(
     orient=HORIZONTAL,
     variable=speed_var
 )
-
 
 first_window_pack()
 main.mainloop()
