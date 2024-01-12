@@ -9,22 +9,9 @@ import socket
 msgFromClient = ""
 msgToClient = ""
 # server info
-
-bufferSize = 1024
-# colors
-bgColor = '#0A1045'
-whiteColor = "#F2F2F2"
-dangerColor = '#F25757'
-successColor = '#10FFCB'
-secondaryColor = '#E0E2DB'
-alertColor = '#E6AF2E'
-primaryColor = '#2176FF'
-
 serverAddressPort = (IP, PORT)
+bufferSize = 1024
 
-# font
-font_configuration_lg = (font_var, 18, 'bold')
-font_configuration_md = (font_var, 14, 'bold')
 
 main = Tk()
 # style = tb.Style(selected_theme)
@@ -32,7 +19,6 @@ main.configure(bg=bgColor)
 main.title("Interface Robotique")
 # main.iconbitmap('../src/images/Robot.png')
 main.geometry(dimensions)
-checkCalled = False
 
 
 def checkConnection():
